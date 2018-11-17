@@ -17,6 +17,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import Home from '../Home/Home';
 import Requests from '../Requests/Requests';
 import Grid from '../Grid/Grid';
+import AddReview from '../ReviewForm/ReviewForm';
 import './App.css';
 
 class App extends Component {
@@ -26,7 +27,6 @@ class App extends Component {
 
   render() {
     return (
-      <Grid>
         <Router>
           <div>
             <Nav />
@@ -56,13 +56,17 @@ class App extends Component {
                 path="/requests"
                 component={Requests}
               />
+                <ProtectedRoute
+                exact
+                path="/add-review"
+                component={AddReview}
+              />
               {/* If none of the other routes matched, we will show a 404. */}
               <Route render={() => <h1>404</h1>} />
             </Switch>
             <Footer />
           </div>
         </Router>
-      </Grid>
     )
   }
 }

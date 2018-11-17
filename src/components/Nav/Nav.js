@@ -22,7 +22,10 @@ const Nav = (props) => (
           <Link className="nav-link" to="/requests">
             Requests 
           </Link>
-          <LogOutButton className="nav-link"/>
+          <Link className="nav-link" to="/add-review">
+            Add a Review
+          </Link>
+          <LogOutButton />
         </>
       )}
       {/* Always show this link since the about page is not protected */}

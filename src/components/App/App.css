@@ -1,5 +1,5 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     margin: 0px;
 }
 
@@ -7,14 +7,28 @@ body {
     background-color: #ff4545;
     margin: 50px;
 }
-
+.button {
+    padding: 15px; 
+    border-radius: 5px;
+    background-color: blueviolet;
+    color: white;
+    font-size: 1.1em;
+}
+.center {
+    text-align: center;
+}
 input {
     margin: 5px;
     margin-bottom: 10px;
 }
-
+.flex-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
 .log-in, .log-out, .register {
-  background-color: #00acb0;
+  background-color: plum;
   border-radius: 4px;
   color: #f8f8f8;
   min-height: 50px;
@@ -24,7 +38,7 @@ input {
 }
 
 .log-in:hover, .log-out:hover, .register:hover {
-  background-color: #008183;
+  background-color: plum;
 }
 
 /* This line makes the "Register" and "Login" buttons look like links */
@@ -37,4 +51,30 @@ input {
     outline:0;
     border-bottom:1px solid #444; 
     cursor: pointer;
+}
+.logout{
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 24px 10px;
+    text-decoration: none;
+    font-size: 15px;
+    background-color: black;
+    color: white; 
+    border:none;
+    cursor: pointer;
+    outline:0;
+}
+.logout:hover{
+    text-decoration: none;
+    color: plum;
+}
+.review-form{
+    margin-left: 20vw;
+    margin-right: 20vw; 
+    margin-top: 8vh; 
+    padding-bottom: 20vh; 
+}
+.title {
+    text-align: center;
 }
