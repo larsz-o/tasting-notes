@@ -54,7 +54,6 @@ input {
 }
 .logout{
     float: left;
-    color: #f2f2f2;
     text-align: center;
     padding: 24px 10px;
     text-decoration: none;
@@ -65,9 +64,13 @@ input {
     cursor: pointer;
     outline:0;
 }
-.logout:hover{
+.logout:hover, .logout:active, .logout:visited{
     text-decoration: none;
     color: plum;
+}
+.review-card {
+    margin: 5vh;
+    padding: 5vh; 
 }
 .review-form{
     margin-left: 20vw;
@@ -77,4 +80,5 @@ input {
 }
 .title {
     text-align: center;
+    margin-top: 2vh;
 }

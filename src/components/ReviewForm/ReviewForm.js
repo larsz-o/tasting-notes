@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import { connect } from 'react-redux';
+import AddWhiskey from '../AddWhiskey/AddWhiskey';
 
 class ReviewForm extends Component {
     constructor(props) {
@@ -11,18 +12,12 @@ class ReviewForm extends Component {
             name: '',
             date: '',
             price: '0.00',
-            appearance: '',
-            nose: '',
-            taste: '',
             location: '',
             bottle_condition: '',
             glass_type: '',
             rating: 0,
             notes: ''
         }
-    }
-    addWhiskey = () => {
-        console.log('You need to add a new whiskey to the database!');
     }
     componentDidMount() {
         this.props.dispatch({ type: 'FETCH_WHISKEY' });
@@ -61,7 +56,7 @@ class ReviewForm extends Component {
             <div>
                 <h2 className="title">Review a New Whiskey</h2>
                 <div className="flex-box">
-                    <button className="button" onClick={this.addWhiskey}>Suggest Addition</button>
+                    <AddWhiskey dispatch={this.props.dispatch}/>
                 </div>
                 <form className="review-form">
                     <FormGroup controlId="addWhiskeyForm">
@@ -92,17 +87,11 @@ class ReviewForm extends Component {
                         <ControlLabel>Date</ControlLabel>
                         <FormControl type="date" onChange={(event) => this.handleChangeFor(event, 'date')} required />
                         <ControlLabel>Price</ControlLabel>
-                        <FormControl type="number" step="0.01" min="0" onChange={(event) => this.handleChangeFor(event, 'price')} />
-                        <ControlLabel>Appearance</ControlLabel>
-                        <FormControl type="text" placeholder="e.g. color, legs" onChange={(event) => this.handleChangeFor(event, 'appearance')} />
-                        <ControlLabel>Nose</ControlLabel>
-                        <FormControl type="text" placeholder="e.g. aroma" onChange={(event) => this.handleChangeFor(event, 'nose')} />
-                        <ControlLabel>Taste</ControlLabel>
-                        <FormControl type="text" onChange={(event) => this.handleChangeFor(event, 'taste')} />
+                        <FormControl type="number" step="0.01" min="0" onChange={(event) => this.handleChangeFor(event, 'price')} required/>
                         <ControlLabel>Where Did You Try It?</ControlLabel>
-                        <FormControl type="text" onChange={(event) => this.handleChangeFor(event, 'location')} />
+                        <FormControl type="text" onChange={(event) => this.handleChangeFor(event, 'location')} required/>
                         <ControlLabel>Bottle Condition</ControlLabel>
-                        <FormControl componentClass="select" placeholder="select one" onChange={(event) => this.handleChangeFor(event, 'bottle_condition')}>
+                        <FormControl componentClass="select" placeholder="select one" onChange={(event) => this.handleChangeFor(event, 'bottle_condition')} required>
                             <option value="">Don't Know</option>
                             <option value="1">Unopened</option>
                             <option value="2">3/4 Full</option>
@@ -117,6 +106,7 @@ class ReviewForm extends Component {
                             labelKey="name"
                             multiple={false}
                             options={glasses}
+                            required
                             placeholder="Start typing..."
                             onChange={(selected) => {
                                 this.setState({
@@ -127,12 +117,12 @@ class ReviewForm extends Component {
                         <ControlLabel>Rating</ControlLabel>
                         <FormControl type="number" max="10" min="0" onChange={(event) => this.handleChangeFor(event, 'rating')} required />
                         <ControlLabel>Notes</ControlLabel>
-                        <FormControl type="text" onChange={(event) => this.handleChangeFor(event, 'notes')} />
+                        <FormControl componentClass="textarea" onChange={(event) => this.handleChangeFor(event, 'notes')} multiline="true" required/>
                         <ControlLabel>Would you get this again?</ControlLabel>
                         <FormGroup>
-                            <input type="radio" name="radioGroup" value="yes" inline="true" onChange={(event) => this.handleChangeFor(event, 'repeat')} /> Yes {' '}
-                            <input type="radio" name="radioGroup" value="maybe" inline="true" onChange={(event) => this.handleChangeFor(event, 'repeat')} /> Maybe {' '}
-                            <input type="radio" name="radioGroup" value="no" inline="true" onChange={(event) => this.handleChangeFor(event, 'repeat')} /> No {' '}
+                            <input type="radio" name="radioGroup" value="yes" inline="true" onChange={(event) => this.handleChangeFor(event, 'repeat')} /> Yes {'   '}
+                            <input type="radio" name="radioGroup" value="maybe" inline="true" onChange={(event) => this.handleChangeFor(event, 'repeat')} /> Maybe {'   '}
+                            <input type="radio" name="radioGroup" value="no" inline="true" onChange={(event) => this.handleChangeFor(event, 'repeat')} /> No {'   '}
                         </FormGroup>
                     </FormGroup>
                     <Button onClick={(event) => this.submitReview(event)} type="submit">Submit</Button>
