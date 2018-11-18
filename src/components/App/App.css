@@ -71,6 +71,7 @@ input {
 .review-card {
     margin: 5vh;
     padding: 5vh; 
+    width: 100%;
 }
 .review-form{
     margin-left: 20vw;

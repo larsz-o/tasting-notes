@@ -45,7 +45,7 @@ class AddWhiskey extends Component {
                 <Modal show={this.state.show} onHide={this.handleHide}>
                     <Modal.Title className="title">Suggest Addition</Modal.Title>
                     <Modal.Body>
-                        <form>
+                        <form onSubmit={(event)=>this.submitAddition(event)}>
                             <FormGroup>
                                 <ControlLabel>Name</ControlLabel>
                                 <FormControl type="text" value={this.state.name} onChange={(event)=>this.handleChangeFor(event, 'name')} required/>
@@ -63,7 +63,7 @@ class AddWhiskey extends Component {
                                     <option value="Whiskey">Whiskey</option>
                                 </FormControl>
                             </FormGroup>
-                            <button type="submit" onClick={(event)=>this.submitAddition(event)}>Submit</button>
+                            <button type="submit" className="button">Submit</button>
                         </form>
                     </Modal.Body>
                 </Modal>

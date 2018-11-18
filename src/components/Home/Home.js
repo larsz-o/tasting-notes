@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment'; 
+import ReviewCard from '../ReviewCard/ReviewCard'
+import { Grid, Col, Row } from 'react-bootstrap'; 
 
 class Home extends Component {
   componentDidMount() {
@@ -14,25 +15,22 @@ class Home extends Component {
     // make an array of whiskey_id's then render the correct details for each whiskey_id on a card? 
     return (
       <div>
-        A list of all of your recent reviews will go here. Off to the side, you'll see a list of your friends' latest reviews.
-        <div className="flex-box">
+        <Grid>
+          <Row>
+            <Col xs={12} md={8}>
+            <h2>Your Latest Reviews</h2>
           {this.props.reviews.map((review, i) => {
             return (
-              <div className="review-card" key={i}>
-                <h3>{review.name}</h3>
-                <h4>{review.origin}</h4>
-                <h5>{review.type}</h5>
-                <br />
-                <p>Tried on {moment(review.date).format('LL')} at {review.location}</p>
-                <p>Price: $ {review.price}</p>
-                <p>Glass Type: {review.glass_type}</p>
-                <p>Bottle Condition: {review.bottle_condition}</p>
-                <p>Notes: {review.notes}</p>
-                <p>Would try again?: {review.repeat}</p>
-              </div>
+              <ReviewCard review={review} key={i}/>
             );
           })}
-        </div>
+            </Col>
+            <Col xs={12} md={4}>
+            <h2>Friends' Activity</h2>
+            </Col>
+          </Row>
+        </Grid>
+       
       </div>
     );
   }
