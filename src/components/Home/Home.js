@@ -21,7 +21,7 @@ class Home extends Component {
             <h2>Your Latest Reviews</h2>
           {this.props.reviews.map((review, i) => {
             return (
-              <ReviewCard review={review} key={i}/>
+              <ReviewCard review={review} key={i} history={this.props.history}/>
             );
           })}
             </Col>

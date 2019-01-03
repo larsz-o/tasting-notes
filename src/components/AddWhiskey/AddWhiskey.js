@@ -72,4 +72,4 @@ class AddWhiskey extends Component {
 
     }
 }
-export default AddWhiskey; 
+export default connect(AddWhiskey); 

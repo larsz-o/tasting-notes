@@ -13,7 +13,6 @@ class ReviewForm extends Component {
             date: '',
             price: '0.00',
             location: '',
-            bottle_condition: '',
             glass_type: '',
             rating: 0,
             notes: ''
@@ -90,17 +89,6 @@ class ReviewForm extends Component {
                         <FormControl type="number" step="0.01" min="0" onChange={(event) => this.handleChangeFor(event, 'price')} required/>
                         <ControlLabel>Where Did You Try It?</ControlLabel>
                         <FormControl type="text" onChange={(event) => this.handleChangeFor(event, 'location')} required/>
-                        <ControlLabel>Bottle Condition</ControlLabel>
-                        <FormControl componentClass="select" placeholder="select one" onChange={(event) => this.handleChangeFor(event, 'bottle_condition')} required>
-                            <option value="">Don't Know</option>
-                            <option value="1">Unopened</option>
-                            <option value="2">3/4 Full</option>
-                            <option value="3">2/3 Full</option>
-                            <option value="4">1/2 Full</option>
-                            <option value="5">1/3 Full</option>
-                            <option value="6">1/4 Full</option>
-                            <option value="7">Nearly Empty</option>
-                        </FormControl>
                         <ControlLabel>Glass Type</ControlLabel>
                         <Typeahead
                             labelKey="name"

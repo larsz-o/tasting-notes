@@ -41,8 +41,8 @@ router.get('/reviews', (req, res) => {
 router.post('/', (req, res) => {
     if (req.isAuthenticated()) {
         const review = req.body;
-        const query = `INSERT INTO "reviews" ("whiskey_id", "person_id", "date", "price", "location", "bottle_condition", "glass_type", "rating", "notes", "repeat") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`;
-        pool.query(query, [review.id, req.user.id, review.date, review.price, review.location, review.bottle_condition, review.glass_type, review.rating, review.notes, review.repeat]).then((results) => {
+        const query = `INSERT INTO "reviews" ("whiskey_id", "person_id", "date", "price", "location", "glass_type", "rating", "notes", "repeat") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`;
+        pool.query(query, [review.id, req.user.id, review.date, review.price, review.location, review.glass_type, review.rating, review.notes, review.repeat]).then((results) => {
             res.sendStatus(201);
         }).catch((error) => {
             console.log('Error posting whiskey', error);
