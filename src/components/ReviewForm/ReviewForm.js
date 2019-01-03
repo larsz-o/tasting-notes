@@ -4,6 +4,11 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 import { connect } from 'react-redux';
 import AddWhiskey from '../AddWhiskey/AddWhiskey';
 
+const mapStateToProps = state => ({
+    whiskey: state.whiskey,
+    oldWhiskey: state.reviews.whiskeyToReview
+});
+let empty; 
 class ReviewForm extends Component {
     constructor(props) {
         super(props);
@@ -20,6 +25,13 @@ class ReviewForm extends Component {
     }
     componentDidMount() {
         this.props.dispatch({ type: 'FETCH_WHISKEY' });
+        //if redux state contains an existing whiskey to review, set it in state so the user doesn't have to select it from the list again
+        if(!empty){
+            this.setState({
+                id: this.props.oldWhiskey.id, 
+                name: this.props.oldWhiskey.name
+            })
+        }
     }
     convertData = () => {
         //convert the price to a float so that it is formatted correctly for the database
@@ -51,25 +63,27 @@ class ReviewForm extends Component {
         //when selected, i'll need to filter through the whole dataset to get the right information to fill in the rest of the form 
         let options = this.props.whiskey.map(whiskey => whiskey.name);
         let glasses = ['Glencairn', 'Tulip', 'Tumbler/Old-Fashioned', 'Highball', 'Snifter', 'NEAT', 'Other'];
+        // checks to see if a whiskey is in redux or not. 
+        empty = Object.keys(this.props.oldWhiskey).length === 0; 
         return (
             <div>
-                <h2 className="title">Review a New Whiskey</h2>
+                <h2 className="title">Review a Whiskey</h2>
                 <div className="flex-box">
                     <AddWhiskey dispatch={this.props.dispatch}/>
                 </div>
                 <form className="review-form">
                     <FormGroup controlId="addWhiskeyForm">
-                        <ControlLabel>Whiskey Name</ControlLabel>
+                    {empty && <div><ControlLabel>Whiskey Name</ControlLabel>
                         <Typeahead
                             labelKey="name"
                             multiple={false}
                             options={options}
                             placeholder="Start typing..."
-                            // when a whiskey is selected, we look for the ID against the array of whiskeys in state, then set state with the name and ID#
+                            // when a whiskey is selected, we look for the ID against the array of whiskeys in the redux state, then set state with the name and ID#
                             onChange={(selected) => {
                                 let id = 0;
                                 for (let i = 0; i < this.props.whiskey.length; i++) {
-                                    if (this.props.whiskey[i].name == selected[0]) {
+                                    if (this.props.whiskey[i].name === selected[0]) {
                                         console.log(this.props.whiskey[i]);
                                         id = this.props.whiskey[i].id;
                                         console.log(id);
@@ -82,8 +96,9 @@ class ReviewForm extends Component {
                                 }
                             }}
                             required
-                        />
-                        <ControlLabel>Date</ControlLabel>
+                        /></div>}
+                        {!empty && <h3 className="center">{this.props.oldWhiskey.name}</h3>}
+                        <ControlLabel>Date Consumed</ControlLabel>
                         <FormControl type="date" onChange={(event) => this.handleChangeFor(event, 'date')} required />
                         <ControlLabel>Price</ControlLabel>
                         <FormControl type="number" step="0.01" min="0" onChange={(event) => this.handleChangeFor(event, 'price')} required/>
@@ -102,7 +117,7 @@ class ReviewForm extends Component {
                                 })
                             }}
                         />
-                        <ControlLabel>Rating</ControlLabel>
+                        <ControlLabel>Rating (0-10)</ControlLabel>
                         <FormControl type="number" max="10" min="0" onChange={(event) => this.handleChangeFor(event, 'rating')} required />
                         <ControlLabel>Notes</ControlLabel>
                         <FormControl componentClass="textarea" onChange={(event) => this.handleChangeFor(event, 'notes')} multiline="true" required/>
@@ -120,7 +135,4 @@ class ReviewForm extends Component {
         );
     }
 }
-const mapStateToProps = state => ({
-    whiskey: state.whiskey
-})
 export default connect(mapStateToProps)(ReviewForm); 

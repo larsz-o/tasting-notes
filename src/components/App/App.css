@@ -27,6 +27,10 @@ input {
     justify-content: center;
     flex-wrap: nowrap;
 }
+.login-div {
+    text-align: center; 
+    margin: 18%;
+}
 .log-in, .log-out, .register {
   background-color: plum;
   border-radius: 4px;

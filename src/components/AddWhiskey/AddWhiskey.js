@@ -39,6 +39,7 @@ class AddWhiskey extends Component {
         this.props.dispatch({type: 'ADD_WHISKEY_TYPE', payload: this.state})
     }
     render() {
+       
         return (
             <div>
                 <button className="button" onClick={this.addWhiskey}>Suggest Addition</button>
@@ -72,4 +73,4 @@ class AddWhiskey extends Component {
 
     }
 }
-export default connect(AddWhiskey); 
+export default connect()(AddWhiskey); 

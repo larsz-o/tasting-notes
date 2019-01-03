@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import moment from 'moment'; 
+import { connect } from 'react-redux'; 
 
 class ReviewCard extends Component {
     addNewReview = () => {
        // nav to add review page, but send details about name, id, origin, type to that form
-       // through redux? 
+       // through redux
+       this.props.dispatch({type: 'SET_WHISKEY_TO_REVIEW', payload: this.props.review});
+       this.props.history.push('/add-review'); 
     }
     render(){
         return(
@@ -24,4 +27,4 @@ class ReviewCard extends Component {
     }
 }
 
-export default ReviewCard; 
+export default connect()(ReviewCard); 

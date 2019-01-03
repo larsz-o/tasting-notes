@@ -16,7 +16,6 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../AboutPage/AboutPage';
 import Home from '../Home/Home';
 import Requests from '../Requests/Requests';
-import Grid from '../Grid/Grid';
 import AddReview from '../ReviewForm/ReviewForm';
 import './App.css';
 

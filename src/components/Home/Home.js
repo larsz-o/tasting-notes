@@ -38,7 +38,7 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
   user: state.user,
-  reviews: state.reviews
+  reviews: state.reviews.reviewsReducer
 });
 
 

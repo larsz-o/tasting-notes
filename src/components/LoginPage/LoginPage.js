@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FormControl, ControlLabel } from 'react-bootstrap'; 
 
 class LoginPage extends Component {
   state = {
@@ -31,7 +32,7 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className="login-div">
         {this.props.errors.loginMessage && (
           <h2
             className="alert"
@@ -43,26 +44,26 @@ class LoginPage extends Component {
         <form onSubmit={this.login}>
           <h1>Login</h1>
           <div>
-            <label htmlFor="username">
-              Username:
-              <input
+            <ControlLabel htmlFor="username">
+              Username
+              <FormControl
                 type="text"
                 name="username"
                 value={this.state.username}
                 onChange={this.handleInputChangeFor('username')}
               />
-            </label>
+            </ControlLabel>
           </div>
           <div>
-            <label htmlFor="password">
-              Password:
-              <input
+            <ControlLabel htmlFor="password">
+              Password
+              <FormControl
                 type="password"
                 name="password"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor('password')}
               />
-            </label>
+            </ControlLabel>
           </div>
           <div>
             <input
